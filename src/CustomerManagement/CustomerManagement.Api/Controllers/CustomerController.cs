@@ -6,35 +6,35 @@ namespace CustomerManagement.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController(ICustomerService customerService) : ControllerBase
+    public class CustomerController(ICustomerRepository customerRepository) : ControllerBase
     {
-        private readonly ICustomerService _customerService = customerService;
+        private readonly ICustomerRepository _customerRepository = customerRepository;
 
         [HttpGet]
         public IEnumerable<Customer> Get()
         {
-            return _customerService.GetCustomers();
+            return _customerRepository.GetCustomers();
         }
 
         [HttpGet("{id}")]
-        public Customer? Get(int id) => _customerService.GetCustomerById(id);
+        public Customer? Get(int id) => _customerRepository.GetCustomerById(id);
 
         [HttpPost]
         public void Post([FromBody] Customer customer)
         {
-            _customerService.AddCustomer(customer);
+            _customerRepository.AddCustomer(customer);
         }
 
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Customer updatedCustomer)
         {
-            _customerService.UpdateCustomer(id, updatedCustomer);
+            _customerRepository.UpdateCustomer(id, updatedCustomer);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _customerService.DeleteCustomerById(id);
+            _customerRepository.DeleteCustomerById(id);
         }
     }
 }

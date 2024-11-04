@@ -1,10 +1,16 @@
 using CustomerManagement.Core.Interfaces;
-using CustomerManagement.Core.Services;
+using CustomerManagement.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<ICustomerService, CustomerService>();
+
+builder.Services.AddDbContext<CustomerManagementContext>(options => 
+    options.UseSqlite(@"Data Source=CustomerManagement.db;")
+);
+
+builder.Services.AddScoped<ICustomerRepository, EfCustomerRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

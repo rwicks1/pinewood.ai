@@ -1,9 +1,9 @@
 ﻿using CustomerManagement.Core.Entities;
 using CustomerManagement.Core.Interfaces;
 
-namespace CustomerManagement.Core.Services
+namespace CustomerManagement.Core.Repositories
 {
-    public class CustomerService : ICustomerService
+    public class CustomerRepository : ICustomerRepository
     {
         private List<Customer> _customers = new List<Customer>
         {

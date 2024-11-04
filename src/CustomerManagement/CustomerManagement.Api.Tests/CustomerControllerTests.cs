@@ -2,7 +2,6 @@
 using CustomerManagement.Api.Controllers;
 using CustomerManagement.Core.Entities;
 using CustomerManagement.Core.Interfaces;
-using CustomerManagement.Core.Services;
 using Moq;
 using Xunit;
 
@@ -22,7 +21,7 @@ namespace CustomerManagement.Api.Tests
             };
 
 
-            var customerServiceMock = new Mock<ICustomerService>();
+            var customerServiceMock = new Mock<ICustomerRepository>();
             customerServiceMock.Setup(x => x.AddCustomer(It.IsAny<Customer>())).Callback((Customer c) => customers.Add(c));
             customerServiceMock.Setup(x => x.GetCustomers()).Returns(customers);
             customerServiceMock.Setup(x => x.GetCustomerById(It.IsAny<int>())).Returns((int id) => customers.SingleOrDefault(x => x.Id == id));
