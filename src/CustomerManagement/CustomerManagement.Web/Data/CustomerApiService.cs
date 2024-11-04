@@ -9,7 +9,7 @@ namespace CustomerManagement.Web.Data
         {
             using (var httpClient = new HttpClient())
             {
-                using (HttpResponseMessage response = await httpClient.PostAsJsonAsync("https://localhost:7057/api/customer/", customer))
+                using (HttpResponseMessage response = await httpClient.PostAsJsonAsync("http://localhost:7057/api/customer/", customer))
                 {
                     response.EnsureSuccessStatusCode();
                 }
@@ -20,7 +20,7 @@ namespace CustomerManagement.Web.Data
         {
             using (var httpClient = new HttpClient())
             {
-                using (HttpResponseMessage response = await httpClient.DeleteAsync($"https://localhost:7057/api/customer/{id}"))
+                using (HttpResponseMessage response = await httpClient.DeleteAsync($"http://localhost:7057/api/customer/{id}"))
                 {
                     response.EnsureSuccessStatusCode();
                 }
@@ -32,7 +32,7 @@ namespace CustomerManagement.Web.Data
             var customer = new CustomerViewModel();
             using (var httpClient = new HttpClient())
             {
-                using (HttpResponseMessage response = await httpClient.GetAsync($"https://localhost:7057/api/customer/{id}"))
+                using (HttpResponseMessage response = await httpClient.GetAsync($"http://localhost:7057/api/customer/{id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var options = new JsonSerializerOptions
@@ -55,7 +55,7 @@ namespace CustomerManagement.Web.Data
             var customers = new List<CustomerViewModel>();
             using (var httpClient = new HttpClient())
             {
-                using (HttpResponseMessage response = await httpClient.GetAsync("https://localhost:7057/api/customer/"))
+                using (HttpResponseMessage response = await httpClient.GetAsync("http://localhost:7057/api/customer/"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var options = new JsonSerializerOptions
@@ -77,7 +77,7 @@ namespace CustomerManagement.Web.Data
         {
             using (var httpClient = new HttpClient())
             {
-                using (HttpResponseMessage response = await httpClient.PutAsJsonAsync($"https://localhost:7057/api/customer/{id}", customer))
+                using (HttpResponseMessage response = await httpClient.PutAsJsonAsync($"http://localhost:7057/api/customer/{id}", customer))
                 {
                     response.EnsureSuccessStatusCode();
                 }

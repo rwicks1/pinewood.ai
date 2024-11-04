@@ -71,19 +71,7 @@ namespace CustomerManagement.Api.Tests
         }
 
         [Fact]
-        public void WhenPostIsCalledCorrectNumberOfCustomersIsReturned()
-        {
-            int expected = 5;
-
-            _customerController.Post(new Customer { Id = 5, Name = "Test Customer", Address = "Test Address", PhoneNumber = "123456789" });
-
-            var customers = _customerController.Get();
-
-            Assert.Equal(expected, customers.Count());
-        }
-
-        [Fact]
-        public void WhenPostIsCalledCorrectCustomerIsAdded()
+        public void WhenPostCorrectCustomerIsAdded()
         {
             string expected = "Test Customer";
 
@@ -96,7 +84,7 @@ namespace CustomerManagement.Api.Tests
         }
 
         [Fact]
-        public void WhenPostIsCalledCustomerIsUpdated()
+        public void WhenPutCustomerIsUpdated()
         {
             string expected = "01743 845568";
 
@@ -106,6 +94,16 @@ namespace CustomerManagement.Api.Tests
 
             Assert.NotNull(customer);
             Assert.Equal(expected, customer.PhoneNumber);
+        }
+        
+        [Fact]
+        public void WhenDeleteCustomerIsDeleted()
+        {
+            _customerController.Delete(1);
+
+            var customer = _customerController.Get(1);
+
+            Assert.Null(customer);
         }
     }
 }

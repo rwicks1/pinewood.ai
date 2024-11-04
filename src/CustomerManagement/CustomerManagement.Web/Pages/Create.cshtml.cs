@@ -29,8 +29,7 @@ namespace CustomerManagement.Web.Pages
                 return Page();
             }
 
-            //_context.CustomerViewModel.Add(CustomerViewModel);
-            //await _context.SaveChangesAsync();
+            await _customerApiService.CreateCustomer(CustomerViewModel);
 
             return RedirectToPage("./Index");
         }
